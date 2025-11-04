@@ -100,7 +100,6 @@ graph TD
   App --> Plugins["core/plugins"]
   App --> Modules["modules/*"]
   Modules --> ModuleA["modules/users"]
-  Modules --> ModuleB["modules/missions"]
   Plugins --> DB["core/db"]
   Modules --> DB
   Plugins --> Swagger["Swagger"]
