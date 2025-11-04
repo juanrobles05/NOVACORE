@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="600" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .node { fill: #ffffff; stroke: #2b87f0; stroke-width: 2px; rx: 6px; }
+    .label { font-family: Arial, Helvetica, sans-serif; font-size: 14px; fill: #0b2545; }
+    .small { font-size: 12px; fill: #0b2545; }
+    .arrow { stroke: #0b2545; stroke-width: 2px; fill: none; }
+  </style>
+
+  <!-- Nodes -->
+  <g id="left-column">
+    <rect class="node" x="40" y="260" width="140" height="50"/>
+    <text class="label" x="110" y="293" text-anchor="middle">Client</text>
+  </g>
+
+  <g id="fastify">
+    <rect class="node" x="220" y="240" width="160" height="90"/>
+    <text class="label" x="300" y="275" text-anchor="middle">Fastify Server</text>
+    <text class="small" x="300" y="295" text-anchor="middle">(HTTP)</text>
+  </g>
+
+  <g id="app">
+    <rect class="node" x="420" y="200" width="160" height="70"/>
+    <text class="label" x="500" y="235" text-anchor="middle">app.ts</text>
+  </g>
+
+  <g id="plugins">
+    <rect class="node" x="620" y="120" width="160" height="70"/>
+    <text class="label" x="700" y="155" text-anchor="middle">core/plugins</text>
+  </g>
+
+  <g id="modules">
+    <rect class="node" x="620" y="280" width="160" height="70"/>
+    <text class="label" x="700" y="315" text-anchor="middle">modules/*</text>
+  </g>
+
+  <g id="moduleA">
+    <rect class="node" x="820" y="240" width="140" height="50"/>
+    <text class="label" x="890" y="273" text-anchor="middle">modules/users</text>
+  </g>
+
+  <g id="moduleB">
+    <rect class="node" x="820" y="320" width="140" height="50"/>
+    <text class="label" x="890" y="353" text-anchor="middle">modules/missions</text>
+  </g>
+
+  <g id="db">
+    <rect class="node" x="620" y="420" width="160" height="60"/>
+    <text class="label" x="700" y="455" text-anchor="middle">core/db</text>
+  </g>
+
+  <g id="swagger">
+    <rect class="node" x="820" y="80" width="140" height="50"/>
+    <text class="label" x="890" y="113" text-anchor="middle">Swagger</text>
+  </g>
+
+  <g id="cors">
+    <rect class="node" x="820" y="160" width="140" height="50"/>
+    <text class="label" x="890" y="193" text-anchor="middle">CORS</text>
+  </g>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0b2545" />
+    </marker>
+  </defs>
+
+  <!-- Client -> Fastify -->
+  <path class="arrow" d="M180 285 L220 285" marker-end="url(#arrowhead)" />
+
+  <!-- Fastify -> App -->
+  <path class="arrow" d="M380 285 L420 235" marker-end="url(#arrowhead)" />
+
+  <!-- App -> Plugins -->
+  <path class="arrow" d="M580 235 L620 155" marker-end="url(#arrowhead)" />
+
+  <!-- App -> Modules -->
+  <path class="arrow" d="M580 235 L620 315" marker-end="url(#arrowhead)" />
+
+  <!-- Modules -> ModuleA & ModuleB -->
+  <path class="arrow" d="M780 315 L820 265" marker-end="url(#arrowhead)" />
+  <path class="arrow" d="M780 315 L820 335" marker-end="url(#arrowhead)" />
+
+  <!-- Plugins -> DB -->
+  <path class="arrow" d="M700 190 L700 420" marker-end="url(#arrowhead)" />
+
+  <!-- Modules -> DB -->
+  <path class="arrow" d="M700 350 L700 420" marker-end="url(#arrowhead)" />
+
+  <!-- Plugins -> Swagger and CORS -->
+  <path class="arrow" d="M780 155 L820 105" marker-end="url(#arrowhead)" />
+  <path class="arrow" d="M780 155 L820 185" marker-end="url(#arrowhead)" />
+
+  <!-- Labels for flow -->
+  <text class="small" x="240" y="220">HTTP layer</text>
+  <text class="small" x="520" y="170">Registers plugins & modules</text>
+
+  <!-- Footer note -->
+  <text class="small" x="20" y="580">Diagram generated from ARCHITECTURE.md — NovaFast Pattern</text>
+</svg>

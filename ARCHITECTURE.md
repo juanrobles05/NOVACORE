@@ -94,17 +94,18 @@ A continuación se describen los patrones arquitectónicos y de diseño que insp
 ## 7. Diagrama arquitectónico (Mermaid)
 
 ```mermaid
+```mermaid
 flowchart TD
-  Client[Client (Web/Mobile)] -->|HTTP| Fastify[Fastify Server]
-  Fastify --> App[app.ts]
-  App --> Plugins[core/plugins]
-  App --> Modules[modules/*]
-  Modules --> ModuleA[modules/users]
-  Modules --> ModuleB[modules/missions]
-  Plugins --> DB[core/db]
+  Client["Client (Web/Mobile)"] -->|HTTP| Fastify["Fastify Server"]
+  Fastify --> App["app.ts"]
+  App --> Plugins["core/plugins"]
+  App --> Modules["modules/*"]
+  Modules --> ModuleA["modules/users"]
+  Modules --> ModuleB["modules/missions"]
+  Plugins --> DB["core/db"]
   Modules --> DB
-  Plugins --> Swagger
-  Plugins --> CORS
+  Plugins --> Swagger["Swagger"]
+  Plugins --> CORS["CORS"]
 ```
 
 
