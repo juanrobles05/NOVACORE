@@ -126,5 +126,35 @@ graph TD
 3. Registrar en `app.ts`: `app.register(import('./modules/<name>/index.js'), { prefix: '/api/<name>' })`.
 
 
+
+## 11. Ventajas, limitaciones y extensiones
+
+### ¿En qué es bueno este patrón?
+- Permite arrancar proyectos rápidamente con una estructura repetible y predecible.
+- Fomenta modularidad por dominio: facilita que varios equipos trabajen en paralelo y que los módulos se extraigan en el futuro.
+- Mejora la testabilidad: la separación entre controllers, services y repositorios hace sencillo mockear dependencias.
+- Buena compatibilidad con Fastify: el patrón encaja con el modelo de plugins y registro de Fastify.
+- Balance razonable entre simplicidad y escalabilidad para aplicaciones backend de tamaño pequeño a mediano.
+
+### ¿En qué no es ideal?
+- No es la mejor opción para aplicaciones extremadamente simples (un script o micro-API trivial), donde la sobrecarga de carpetas y capas añade fricción.
+- Para sistemas con requisitos de latencia ultra-bajos y escalado extremo, un monolito modular puede necesitar readaptación a microservicios o arquitecturas orientadas a eventos más avanzadas.
+- Si no se aplican y mantienen límites de responsabilidad claros, la modularidad puede convertirse en acoplamiento implícito (mala práctica: copiar/pegar lógica entre módulos).
+- No resuelve por sí sola aspectos operativos (deployment, observabilidad, secrets management) — hay que complementarla.
+
+### Qué se le puede agregar (extensiones recomendadas)
+- Autenticación/ autorización como plugin opcional (JWT, OAuth2, RBAC).
+- Observabilidad: métricas (Prometheus), traces distribuidos (OpenTelemetry) y logging estructurado.
+- Caching: una capa opcional de cache (Redis) en servicios que lo requieran.
+- Rate limiting y protección (shielding) a nivel de plugin.
+- Circuit breakers / retries cuando se integren servicios externos.
+- Job queue / background workers para tareas asíncronas (BullMQ / RabbitMQ).
+- Feature flags y configuración dinámica (LaunchDarkly, Unleash, o soluciones caseras).
+- CI/CD y pipelines: flujos automáticos para lint/test/build/release.
+- Infraestructura como código (Terraform, Pulumi) y manifestos de despliegue (K8s Helm charts) si se va a producción.
+
+Estas extensiones permiten adaptar la plantilla a proyectos con mayores necesidades de resiliencia, observabilidad y operaciones.
+
+
 ## 11. Licencia y créditos
 Creado por Juan Diego Robles - NOVACORE (2025)
