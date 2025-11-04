@@ -156,5 +156,5 @@ graph TD
 Estas extensiones permiten adaptar la plantilla a proyectos con mayores necesidades de resiliencia, observabilidad y operaciones.
 
 
-## 11. Licencia y créditos
+## 12. Licencia y créditos
 Creado por Juan Diego Robles - NOVACORE (2025)
