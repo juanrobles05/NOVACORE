@@ -94,8 +94,7 @@ A continuación se describen los patrones arquitectónicos y de diseño que insp
 ## 7. Diagrama arquitectónico (Mermaid)
 
 ```mermaid
-```mermaid
-flowchart TD
+graph TD
   Client["Client (Web/Mobile)"] -->|HTTP| Fastify["Fastify Server"]
   Fastify --> App["app.ts"]
   App --> Plugins["core/plugins"]
