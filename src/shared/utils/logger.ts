@@ -13,6 +13,7 @@ const loggerOptions: LoggerOptions = {
           colorize: true,
           translateTime: 'SYS:HH:MM:ss Z',
           ignore: 'pid,hostname',
+          ignoreTrailingSlash: true,
         },
       }
     : undefined,
