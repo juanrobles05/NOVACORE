@@ -3,43 +3,50 @@ import * as controller from "./users.controller";
 
 // Routes for the users module. Schemas are JSON Schema used by Fastify
 // for request validation and to generate OpenAPI docs.
+
 const getUsersSchema = {
-    response: {
-        200: {
-            type: "array",
-            items: {
-                type: "object",
-                properties: {
-                    id: { type: "number" },
-                    id_document: { type: "string" },
-                    username: { type: "string" },
-                    email: { type: "string" }
-                },
-                required: ["id", "id_document", "username", "email"]
-            }
-        }
+  response: { 200: { /* ... */ } }
+} as const;
+
+const getUserByIdSchema = {
+  params: {
+    type: "object",
+    properties: {
+      id: { type: "string", pattern: "^[0-9]+$" } // route param is string
+    },
+    required: ["id"]
+  },
+  response: {
+    200: {
+      type: "object",
+      properties: {
+        id: { type: "number" },
+        id_document: { type: "string" },
+        username: { type: "string" },
+        email: { type: "string" }
+      }
     }
+  }
+} as const;
+
+// DELETE /:id -> delete user by id
+const deleteUserSchema = {
+  params: {
+    type: "object",
+    properties: {
+      id: { type: "string", pattern: "^[0-9]+$" }
+    },
+    required: ["id"]
+  }
 } as const;
 
 const routes: FastifyPluginAsync = async function (app, opts) {
-    // GET / -> list users
-    app.get("/", { schema: getUsersSchema }, controller.getUsers);
+  app.get("/", { schema: getUsersSchema }, controller.getUsers);
+  app.post("/", controller.createUser);
 
-    // POST / -> create user (body validated by schema)
-    const createUserSchema = {
-        body: {
-            type: "object",
-            properties: {
-                id_document: { type: "string", minLength: 5 },
-                username: { type: "string", minLength: 3 },
-                email: { type: "string", format: "email" },
-                password: { type: "string", minLength: 6 }
-            },
-            required: ["id_document", "username", "email", "password"]
-        }
-    } as const;
-
-    app.post("/", { schema: createUserSchema }, controller.createUser);
+  // route that accepts /api/users/:id  (and with ignoreTrailingSlash true also /api/users/:id/)
+  app.get("/:id/", { schema: getUserByIdSchema }, controller.getUserById);
+  app.delete("/:id/", { schema: deleteUserSchema }, controller.deleteUser);
 };
 
 export default routes;
