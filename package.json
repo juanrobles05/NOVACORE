@@ -1,0 +1,55 @@
+{
+  "name": "novacore",
+  "version": "1.0.0",
+  "description": "Boilerplate for fastify with typescript",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "check-types": "tsc --project tsconfig.json --noEmit",
+    "build": "tsc",
+    "test": "vitest",
+    "start": "node dist/server.js",
+    "lint": "eslint . --ext .ts"
+  },
+  "files": [
+  "src",
+  "tsconfig.json",
+  "README.md",
+  ".env.example",
+  ".eslintrc.json"
+  ],
+  "keywords": [
+    "fastify",
+    "typescript",
+    "zod",
+    "backend",
+    "boilerplate"
+  ],
+  "author": {
+    "name": "Juan Robles"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@fastify/cors": "^11.1.0",
+    "@fastify/swagger": "^9.5.2",
+    "@fastify/swagger-ui": "^5.2.3",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.1",
+    "pg": "^8.16.3",
+    "pino-pretty": "^13.1.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/pg": "^8.15.6",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "eslint": "^9.39.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
