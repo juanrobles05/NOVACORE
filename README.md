@@ -99,8 +99,3 @@ If you use this template as a repo starter, follow these recommendations:
 MIT — see `LICENSE`
 
 ---
-
-If you'd like, I can also:
-- add badges (build/test/coverage) to the top of this README,
-- generate a `CONTRIBUTING.md`, or
-- create a GitHub Actions workflow that runs the tests on push/PR.
